@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <i class="fa fa-bar-chart"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <span id="player-name" class="nav-link animated text-white"></span>
+        </li>
+        <li class="nav-item">
+          <span id="rate-span" class="nav-link animated text-white"></span>
+        </li>
+        <li class="nav-item text-white">
+          <div id="countdown" class="nav-link">
+            <div class="values"></div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Lifelines</a>
+          <div class="dropdown-menu text-center" aria-labelledby="dropdown08">
+            <button type="button" class="btn btn-secondary w-75 my-3" id="lifeline">50/50</button>
+            <button type="button" class="btn btn-secondary w-75 my-3" id="ask-friend">Ask a friend</button>
+            <button type="button" class="btn btn-secondary w-75 my-3" id="ask-host">Ask the host</button>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button id="quit-modal" class="btn btn-secondary nav-link mx-3">Quit</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="quiz">
+    <div class="container-fluid quiz-scores">
+      <div class="row justify-content-center text-center py-4">
+        <div class="col-3 ">
+          <h4>Score</h4>
+          <span id="streak-span" class="animated badge badge-info">0</span>
+        </div>
+        <div class="col-3">
+          <h4>Stats</h4>
+          <button id="stats-modal" class="btn btn-secondary">View Stats</button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+          <p id="quiz-question" class="animated"></p>
+          <div id="quiz-options">
+            <!--           <button id="quiz-ans-0" class="btn quiz-ans-btn animated">Gale</button>
+          <button id="quiz-ans-1" class="btn quiz-ans-btn animated">Perkins</button>
+          <button id="quiz-ans-2" class="btn quiz-ans-btn animated">Day</button>
+          <button id="quiz-ans-3" class="btn quiz-ans-btn animated">Parker</button>          -->
+          </div>
+          <div id="quiz-play-again">
+            <button id="quiz-play-again-btn" class="btn animated">Play Again</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="countdown-container" class="col-xs-12 col-md-10 col-md-offset-1 text-center"></div>
+      </div>
+    </div>
+  </div>
+  <div id="audienceParticipation" class="container text-center">
+    <p id="heading0">Option 1</p>
+    <div class="container">
+      <div class="aud zero">Option 1</div>
+    </div>
+
+    <p id="heading1">Option 2</p>
+    <div class="container">
+      <div class="aud one">Option 2</div>
+    </div>
+
+    <p id="heading2">Option 3</p>
+    <div class="container">
+      <div class="aud two">Option 3</div>
+    </div>
+
+    <p id="heading3">Option 4</p>
+    <div class="container">
+      <div class="aud three">Option 4</div>
+    </div>
+  </div>
+
+  <!--//////////////////////////////////////////////////////////////////////////////////// 
+    //////////////////////// New Player Modal ////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////-->
+  <button type="button" class="btn btn-info btn-lg" id="myBtn">Challenge Yourself !</button>
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="newGameModal" aria-hidden="true"
+    id="newGameModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!--// MODAL HEADER //-->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+
+        <!--// MODAL BODY //-->
+        <div class="modal-body">
+          <form action="" class="col-sm-8 offset-sm-2" id="startGame">
+            <div class="form-group">
+              <label for="playerName">Player Name</label>
+              <input type="text" class="form-control" id="playerName" id="playerName" placeholder="Enter Your Name Here">
+            </div>
+            <label>Choose a Bonus Category</label>
+            <select class="custom-select" id="categories">
+              <option selected value="">Pick a Category</option>
+              <!-- 4 Random Categories Append Here -->
+            </select>
+            <input type="submit" value="Play Game" class="btn btn-secondary text-center mt-5">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--//////////////////////////////////////////////////////////////////////////////////// 
+    //////////////////////// Game Over Modal ////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////-->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="GameOverModal" aria-hidden="true"
+    id="GameOverModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!--// MODAL HEADER //-->
+        <div class="modal-header">
+          <h5 class="modal-title" id="game-over-header">Game Over</h5>
+        </div>
+
+        <!--// MODAL BODY //-->
+        <div class="modal-body">
+          <div class="scoreboard" id="scoreboard">
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Score</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Correct</th>
+                  <th scope="col">Incorrect</th>
+                  <th scope="col">Questions Asked</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="player-score">0</td>
+                  <td id="player-triviaName">Player</td>
+                  <td id="player-correct">0</td>
+                  <td id="player-incorrect">0</td>
+                  <td id="player-asked">0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!--// MODAL FOOTER //-->
+        <div class="modal-footer">
+          <!-- This button will save the score and exit game -->
+          <button class="btn btn-secondary" id="save-game" data-dismiss="modal" onclick=closeWindow()>Save and Exit</button>
+          <!-- This button will reset the score and stats -->
+          <button class="btn btn-secondary" id="new-game">New Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="js/progressbar.min.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+
+
+</html>
